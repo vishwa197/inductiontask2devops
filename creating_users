@@ -1,0 +1,45 @@
+#!/bin/bash
+
+useradd -m corona
+
+useradd -m doc1
+useradd -m doc2
+
+groupadd patientsdoc1
+groupadd patientsdoc2
+
+useradd -g patientsdoc1 -m patient1
+useradd -g patientsdoc1 -m patient2
+useradd -g patientsdoc1 -m patient3
+useradd -g patientsdoc1 -m patient4
+useradd -g patientsdoc1 -m patient5
+useradd -g patientsdoc2 -m patient6
+useradd -g patientsdoc2 -m patient7
+useradd -g patientsdoc2 -m patient8
+useradd -g patientsdoc2 -m patient9
+useradd -g patientsdoc2 -m patient10
+
+cd ~doc1
+sudo -u doc1 mkdir {Vaccines,Symptoms,Requests}
+cd ~doc2
+sudo -u doc2 mkdir {Vaccines,Symptoms,Requests}
+cd ~patient1
+sudo -u patient1 mkdir Symptoms
+cd ~patient2
+sudo -u patient2 mkdir Symptoms
+cd ~patient3
+sudo -u patient3 mkdir Symptoms
+cd ~patient4
+sudo -u patient4 mkdir Symptoms
+cd ~patient5
+sudo -u patient5 mkdir Symptoms
+cd ~patient6
+sudo -u patient6 mkdir Symptoms
+cd ~patient7
+sudo -u patient7 mkdir Symptoms
+cd ~patient8
+sudo -u patient8 mkdir Symptoms
+cd ~patient9
+sudo -u patient9 mkdir Symptoms
+cd ~patient10
+sudo -u patient10 mkdir Symptoms
