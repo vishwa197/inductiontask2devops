@@ -1,23 +1,22 @@
 #!/bin/bash
 
-useradd -m corona
 
-useradd -m doc1
-useradd -m doc2
+useradd -m -d /home/corona corona
+useradd -m -d /home/doc1 doc1
+useradd -m -d /home/doc2 doc2
 
-groupadd patientsdoc1
-groupadd patientsdoc2
+useradd -m -d /home/patient1  patient1
+useradd -m -d /home/patient2  patient2
+useradd -m -d /home/patient3  patient3
+useradd -m -d /home/patient4  patient4
+useradd -m -d /home/patient5  patient5
+useradd -m -d /home/patient6  patient6
+useradd -m -d /home/patient7  patient7
+useradd -m -d /home/patient8  patient8
+useradd -m -d /home/patient9  patient9
+useradd -m -d /home/patient10 patient10
 
-useradd -g patientsdoc1 -m patient1
-useradd -g patientsdoc1 -m patient2
-useradd -g patientsdoc1 -m patient3
-useradd -g patientsdoc1 -m patient4
-useradd -g patientsdoc1 -m patient5
-useradd -g patientsdoc2 -m patient6
-useradd -g patientsdoc2 -m patient7
-useradd -g patientsdoc2 -m patient8
-useradd -g patientsdoc2 -m patient9
-useradd -g patientsdoc2 -m patient10
+
 
 cd ~doc1
 sudo -u doc1 mkdir {Vaccines,Symptoms,Requests}
@@ -43,3 +42,132 @@ cd ~patient9
 sudo -u patient9 mkdir Symptoms
 cd ~patient10
 sudo -u patient10 mkdir Symptoms
+
+groupadd virus
+gpasswd -M corona virus
+
+groupadd head1
+gpasswd -M corona,doc1 head1
+
+groupadd head2
+gpasswd -M corona,doc2 head2 #virus,head1,head2 allows corona to access,modify all citizens(with chgrp and chmod below) Also doctors can access,modify their own patients only. 
+
+groupadd citizens
+gpasswd -M doc1,doc2,patient1,patient2,patient3,patient4,patient5,patient6,patient7,patient8,patient9,patient10
+
+groupadd patients1
+gpasswd -M patient1,patient2,patient3,patient4,patient5
+
+groupadd patients2
+gpasswd -M patient6,patient7,patient8,patient9,patient10
+
+chgrp citizens /home/corona
+chgrp virus /home/doc1 /home/doc2
+chgrp head1 /home/patient1 /home/patient2 /home/patient3 /home/patient4 /home/patient5 
+chgrp head2 /home/patient6 /home/patient7 /home/patient8 /home/patient9 /home/patient10
+chgrp patients1 /home/doc1/Vaccines
+chgrp patients2 /home/doc2/Vaccines
+
+chmod 740 /home/corona
+
+chmod 770 /home/patient1
+chmod 770 /home/patient2
+chmod 770 /home/patient3
+chmod 770 /home/patient4
+chmod 770 /home/patient5
+chmod 770 /home/patient6
+chmod 770 /home/patient7
+chmod 770 /home/patient8
+chmod 770 /home/patient9
+chmod 770 /home/patient10 #So that the groups can read,write,execute 
+
+chmod 740 /home/doc1/Vaccines
+chmod 740 /home/doc2/Vaccines
+
+touch /home/doc1/Vaccines/vaccine_1.txt
+touch /home/doc1/Vaccines/vaccine_2.txt
+touch /home/doc1/Vaccines/vaccine_3.txt
+touch /home/doc1/Vaccines/vaccine_4.txt
+touch /home/doc1/Vaccines/vaccine_5.txt
+
+touch /home/doc2/Vaccines/vaccine_6.txt
+touch /home/doc2/Vaccines/vaccine_7.txt
+touch /home/doc2/Vaccines/vaccine_8.txt
+touch /home/doc2/Vaccines/vaccine_9.txt
+touch /home/doc2/Vaccines/vaccine_10.txt
+
+sudo bash -c 'echo "Recombinant adenovirus expressing Trunctuated S protein (rADV-S)" > /home/doc1/Vaccines/vaccine_1.txt'
+sudo bash -c 'echo "Zydus Cadilas ZyCov-D" > /home/doc1/Vaccines/vaccine_2.txt'
+sudo bash -c 'echo "MV-SARS recombinant measles virus vaccine expressing SARS CoV antigen" > /home/doc1/Vaccines/vaccine_3.txt'
+sudo bash -c 'echo "Receptor binding domain (RBD) of the SARS-CoV spike (S) protein" > /home/doc1/Vaccines/vaccine_4.txt'
+sudo bash -c 'echo "SARS recombinant spike protein plus delta inulin " > /home/doc1/Vaccines/vaccine_5.txt'
+
+sudo bash -c 'echo "SARS VLPs S protein and influenza M1 protein" > /home/doc2/Vaccines/vaccine_6.txt'
+sudo bash -c 'echo "SARS S DNA prime and HLA-A*0201 restricted peptides boost vaccine" > /home/doc2/Vaccines/vaccine_7.txt'
+sudo bash -c 'echo "VEEV replicon particles expressing the SARS-CoV S" > /home/doc2/Vaccines/vaccine_8.txt'
+sudo bash -c 'echo "Recombinant trunctuated S-N fusion protein" > /home/doc2/Vaccines/vaccine_9.txt'
+sudo bash -c 'echo "Live attenuated vaccine Nsp16 mutant lacking 2-OMTase" > /home/doc2/Vaccines/vaccine_10.txt'
+
+touch /home/patient1/Symptoms/symptoms_1.txt
+touch /home/patient2/Symptoms/symptoms_2.txt
+touch /home/patient3/Symptoms/symptoms_3.txt
+touch /home/patient4/Symptoms/symptoms_4.txt
+touch /home/patient5/Symptoms/symptoms_5.txt
+touch /home/patient6/Symptoms/symptoms_6.txt
+touch /home/patient7/Symptoms/symptoms_7.txt
+touch /home/patient8/Symptoms/symptoms_8.txt
+touch /home/patient9/Symptoms/symptoms_9.txt
+touch /home/patient10/Symptoms/symptoms_10.txt
+
+sudo bash -c 'echo "fever,dry cough,tiredness" > /home/patient1/Symptoms/symptoms_1.txt'
+sudo bash -c 'echo "fever,breathing difficulty,sore throat,headache" > /home/patient2/Symptoms/symptoms_2.txt'
+sudo bash -c 'echo "fever,diarrohea,dry cough" > /home/patient3/Symptoms/symptoms_3.txt'
+sudo bash -c 'echo "tiredness,sore throat,loss of taste and smell" > /home/patient4/Symptoms/symptoms_4.txt'
+sudo bash -c 'echo "fever,breathing difficulty,dry cough" > /home/patient5/Symptoms/symptoms_5.txt'
+sudo bash -c 'echo "fever,chest pain,sore throat" > /home/patient6/Symptoms/symptoms_6.txt'
+sudo bash -c 'echo "fever,rash on skin,dry cough" > /home/patient7/Symptoms/symptoms_7.txt'
+sudo bash -c 'echo "fever" > /home/patient8/Symptoms/symptoms_8.txt'
+sudo bash -c 'echo "tiredness,dry cough" > /home/patient9/Symptoms/symptoms_9.txt'
+sudo bash -c 'echo "fever,sore throat,dry cough,conjunctivis" > /home/patient10/Symptoms/symptoms_10.txt'
+
+touch /home/doc1/Requests/p1.txt
+touch /home/doc1/Requests/p2.txt
+touch /home/doc1/Requests/p3.txt
+touch /home/doc1/Requests/p4.txt
+touch /home/doc1/Requests/p5.txt
+
+touch /home/doc2/Requests/p6.txt
+touch /home/doc2/Requests/p7.txt
+touch /home/doc2/Requests/p8.txt
+touch /home/doc2/Requests/p9.txt
+touch /home/doc2/Requests/p10.txt
+
+chgrp patient1 /home/doc1/Requests/p1.txt
+chgrp patient2 /home/doc1/Requests/p2.txt
+chgrp patient3 /home/doc1/Requests/p3.txt
+chgrp patient4 /home/doc1/Requests/p4.txt
+chgrp patient5 /home/doc1/Requests/p5.txt
+chgrp patient6 /home/doc2/Requests/p6.txt
+chgrp patient7 /home/doc2/Requests/p7.txt
+chgrp patient8 /home/doc2/Requests/p8.txt
+chgrp patient9 /home/doc2/Requests/p9.txt
+chgrp patient10 /home/doc2/Requests/p10.txt
+
+chmod 770 /home/doc1/Requests/p1.txt
+chmod 770 /home/doc1/Requests/p2.txt
+chmod 770 /home/doc1/Requests/p3.txt
+chmod 770 /home/doc1/Requests/p4.txt
+chmod 770 /home/doc1/Requests/p5.txt  
+chmod 770 /home/doc2/Requests/p6.txt
+chmod 770 /home/doc2/Requests/p7.txt
+chmod 770 /home/doc2/Requests/p8.txt
+chmod 770 /home/doc2/Requests/p9.txt
+chmod 770 /home/doc2/Requests/p10.txt
+
+
+
+
+
+
+
+
