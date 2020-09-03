@@ -62,24 +62,26 @@ groupadd patients2
 gpasswd -M patient6,patient7,patient8,patient9,patient10
 
 chgrp citizens /home/corona
-chgrp virus /home/doc1 /home/doc2
-chgrp head1 /home/patient1 /home/patient2 /home/patient3 /home/patient4 /home/patient5 
-chgrp head2 /home/patient6 /home/patient7 /home/patient8 /home/patient9 /home/patient10
-chgrp patients1 /home/doc1/Vaccines
-chgrp patients2 /home/doc2/Vaccines
+chgrp -R virus /home/doc1 /home/doc2
+chgrp -R head1 /home/patient1 /home/patient2 /home/patient3 /home/patient4 /home/patient5 
+chgrp -R head2 /home/patient6 /home/patient7 /home/patient8 /home/patient9 /home/patient10
+chgrp  patients1 /home/doc1/Vaccines
+chgrp  patients2 /home/doc2/Vaccines
 
 chmod 740 /home/corona
 
-chmod 770 /home/patient1
-chmod 770 /home/patient2
-chmod 770 /home/patient3
-chmod 770 /home/patient4
-chmod 770 /home/patient5
-chmod 770 /home/patient6
-chmod 770 /home/patient7
-chmod 770 /home/patient8
-chmod 770 /home/patient9
-chmod 770 /home/patient10 #So that the groups can read,write,execute 
+chmod -R 770 /home/doc1
+chmod -R 770 /home/doc2
+chmod -R 770 /home/patient1
+chmod -R 770 /home/patient2
+chmod -R 770 /home/patient3
+chmod -R 770 /home/patient4
+chmod -R 770 /home/patient5
+chmod -R 770 /home/patient6
+chmod -R 770 /home/patient7
+chmod -R 770 /home/patient8
+chmod -R 770 /home/patient9
+chmod -R 770 /home/patient10 #So that the groups can read,write,execute 
 
 chmod 740 /home/doc1/Vaccines
 chmod 740 /home/doc2/Vaccines

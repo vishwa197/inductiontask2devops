@@ -1,0 +1,38 @@
+#!/bin/bash
+
+if[ $(ls /home/doc1/Symptoms | wc -l) > 20 ]  
+then 
+	userdel doc1
+if[ $(ls /home/doc2/Symptoms | wc -l) > 20 ]
+then
+        userdel doc2
+if[ $(ls /home/patient1/Symptoms | wc -l) > 20 ]
+then
+        userdel patient1
+if[ $(ls /home/patient2/Symptoms | wc -l) > 20 ]
+then
+        userdel patient2
+if[ $(ls /home/patient3/Symptoms | wc -l) > 20 ]
+then
+        userdel patient3
+if[ $(ls /home/patient4/Symptoms | wc -l) > 20 ]
+then
+        userdel patient4
+if[ $(ls /home/patient5/Symptoms | wc -l) > 20 ]
+then
+        userdel patient5
+if[ $(ls /home/patient6/Symptoms | wc -l) > 20 ]
+then
+        userdel patient6
+if[ $(ls /home/patient7/Symptoms | wc -l) > 20 ]
+then
+        userdel patient7
+if[ $(ls /home/patient8/Symptoms | wc -l) > 20 ]
+then
+        userdel patient8
+if[ $(ls /home/patient9/Symptoms | wc -l) > 20 ]
+then
+        userdel patient9
+if[ $(ls /home/patient10/Symptoms | wc -l) > 20 ]
+then
+        userdel patient10 
