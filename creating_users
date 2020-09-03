@@ -164,10 +164,17 @@ chmod 770 /home/doc2/Requests/p8.txt
 chmod 770 /home/doc2/Requests/p9.txt
 chmod 770 /home/doc2/Requests/p10.txt
 
-
-
-
-
-
-
+echo "corona:corona" | chpasswd
+echo "doc1:doc1" | chpasswd
+echo "doc2:doc2" | chpasswd
+echo "patient1:patient1" | chpasswd
+echo "patient2:patient2" | chpasswd
+echo "patient3:patient3" | chpasswd
+echo "patient4:patient4" | chpasswd
+echo "patient5:patient5" | chpasswd
+echo "patient6:patient6" | chpasswd
+echo "patient7:patient7" | chpasswd
+echo "patient8:patient8" | chpasswd
+echo "patient9:patient9" | chpasswd
+echo "patient10:patient10" | chpasswd
 
