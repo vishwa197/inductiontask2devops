@@ -180,3 +180,7 @@ echo "patient8:patient8" | chpasswd
 echo "patient9:patient9" | chpasswd
 echo "patient10:patient10" | chpasswd
 
+0 12 * * * /home/vishwa/creating_users2 > /dev/null 2>&1
+ 
+#end
+
